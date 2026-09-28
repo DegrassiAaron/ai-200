@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rag-lab"
+version = "0.1.0"
+description = "Laboratorio AI-200: ricerca semantica (RAG) su Azure"
+requires-python = ">=3.12"
+dependencies = []
+
+# Un gruppo per fase del piano di studio: installa solo quello che ti serve
+# nella settimana in corso, così il container resta piccolo e i costi bassi.
+#   pip install -e ".[dev]"
+#   pip install -e ".[dev,azure]"
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+# Settimana 03: primo SDK Azure
+azure = ["azure-identity>=1.19", "azure-keyvault-secrets>=4.9"]
+# Settimane 08-09: database vettoriali
+data = ["azure-cosmos>=4.9", "psycopg[binary]>=3.2"]
+# Settimana 10: cache e serverless
+serving = ["redis>=5.2", "azure-functions>=1.21"]
+# Settimana 11: messaggi ed eventi
+messaging = ["azure-servicebus>=7.13", "azure-eventgrid>=4.20"]
+# Settimana 12: configurazione e tracing
+observability = [
+  "azure-appconfiguration>=1.7",
+  "azure-monitor-opentelemetry>=1.6",
+  "opentelemetry-sdk>=1.29",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rag"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]

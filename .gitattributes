@@ -1,0 +1,7 @@
+# Normalizza a LF nel repository. Senza questo, su Windows gli script finiscono
+# con CRLF e dentro un container Linux falliscono con "\r: not found".
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf

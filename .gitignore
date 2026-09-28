@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Ambiente e segreti
+.env
+*.env
+!.env.example
+*.pem
+*.key
+
+# Azure
+.azure/
+azure.yaml.local
+local.settings.json
+
+# Editor e sistema
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
